@@ -13,4 +13,3 @@ class FactsNetworkDataSource @Inject constructor() : NetworkDataSource {
         FactsApiImpl.provide().fetchFact()
     }
 }
-

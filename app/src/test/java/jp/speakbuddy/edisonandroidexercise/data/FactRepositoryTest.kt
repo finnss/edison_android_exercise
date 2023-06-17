@@ -31,7 +31,7 @@ import org.robolectric.annotation.LooperMode
 @LooperMode(LooperMode.Mode.PAUSED)
 class FactRepositoryTest {
     @get:Rule
-    var hiltAndroidRule = HiltAndroidRule(this) // 5
+    var hiltAndroidRule = HiltAndroidRule(this)
 
     @MockK
     lateinit var networkDataSource: FactsNetworkDataSource
@@ -46,7 +46,7 @@ class FactRepositoryTest {
     @Before
     fun setUp() {
         MockKAnnotations.init(this, relaxUnitFun = true)
-        hiltAndroidRule.inject() // 6
+        hiltAndroidRule.inject()
 
         dispatcher = StandardTestDispatcher()
         Dispatchers.setMain(dispatcher)
@@ -55,7 +55,7 @@ class FactRepositoryTest {
     }
 
     @Test
-    fun testFactRepositoryGetFuck() = runTest(dispatcher) {
+    fun testFactRepositoryGetFact() = runTest(dispatcher) {
         factRepository = FactRepositoryImpl(networkDataSource, localDataSource, dispatcher)
 
         val fact = Fact("Test fact", 10)

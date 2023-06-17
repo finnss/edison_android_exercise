@@ -1,5 +1,3 @@
-//classpath 'com.android.tools.build:gradle:4.0.1'
-
 plugins {
     id("com.android.application") version "7.4.1" apply false
     id("com.android.library") version "7.4.1" apply false
