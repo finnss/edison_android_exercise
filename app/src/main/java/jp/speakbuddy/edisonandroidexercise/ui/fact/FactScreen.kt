@@ -6,7 +6,6 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Button
-import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -16,6 +15,8 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import jp.speakbuddy.edisonandroidexercise.ui.theme.EdisonAndroidExerciseTheme
@@ -36,6 +37,7 @@ fun FactScreen(
         )
     ) {
         var fact by remember { mutableStateOf("") }
+        var length by remember { mutableStateOf("") }
 
         Text(
             text = "Fact",
@@ -47,8 +49,16 @@ fun FactScreen(
             style = MaterialTheme.typography.bodyLarge
         )
 
+        Text(
+            text = length,
+            style = MaterialTheme.typography.bodyLarge,
+            fontWeight = FontWeight.Bold,
+            textAlign = TextAlign.Right
+        )
+
         val onClick = {
             fact = viewModel.updateFact { print("done") }
+            length = "length: ${fact.length}"
         }
 
         Button(onClick = onClick) {
