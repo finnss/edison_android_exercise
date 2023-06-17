@@ -17,9 +17,13 @@ import kotlinx.coroutines.Dispatchers
 import javax.inject.Qualifier
 import javax.inject.Singleton
 
+// Main entry point for the Application
 @HiltAndroidApp
 class EdisonAndroidExerciseApplication : Application()
 
+// Modules needed by Hilt for Injecting
+
+// Provide the Data Layer (Repository) as a singleton
 @Module
 @InstallIn(SingletonComponent::class)
 abstract class RepoModule {
@@ -30,6 +34,7 @@ abstract class RepoModule {
     ): FactRepository
 }
 
+// Provide an injectable Coroutine dispatcher for async / non-main-thread tasks
 @Module
 @InstallIn(SingletonComponent::class)
 object DispatcherModule {
@@ -42,7 +47,7 @@ object DispatcherModule {
 @Retention(AnnotationRetention.BINARY)
 annotation class IoDispatcher
 
-
+// Provide the local data source
 @Module
 @InstallIn(SingletonComponent::class)
 object LocalStoreModule {

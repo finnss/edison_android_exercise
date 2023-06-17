@@ -24,7 +24,6 @@ android {
         versionCode = 1
         versionName = "0.0.1"
 
-//        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         testInstrumentationRunner = "jp.speakbuddy.edisonandroidexercise.TestRunner"
         vectorDrawables {
             useSupportLibrary = true
@@ -90,6 +89,7 @@ dependencies {
     implementation("androidx.datastore:datastore-preferences:1.0.0")
     implementation("androidx.datastore:datastore:1.0.0")
     implementation("com.google.dagger:hilt-android:2.44.2")
+    kapt("com.google.dagger:hilt-android-compiler:2.44.2")
     implementation("androidx.test:runner:1.4.0")
     implementation("com.google.protobuf:protobuf-kotlin-lite:3.21.12")
 
@@ -106,7 +106,6 @@ dependencies {
     testImplementation("org.robolectric:robolectric:4.10.3")
     testImplementation("org.junit.jupiter:junit-jupiter")
     testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.7.1")
-    kapt("com.google.dagger:hilt-android-compiler:2.44.2")
     kaptTest("com.google.dagger:hilt-android-compiler:2.44.2")
     kaptAndroidTest("com.google.dagger:hilt-android-compiler:2.44")
     androidTestImplementation("com.google.dagger:hilt-android-testing:2.44")

@@ -12,6 +12,7 @@ import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
+// The View Model handling the UI State, particularly transitions between UI states.
 @HiltViewModel
 class FactViewModel @Inject constructor() : ViewModel() {
     @Inject
@@ -49,7 +50,7 @@ class FactViewModel @Inject constructor() : ViewModel() {
 }
 
 /**
- * UiState for the facts list screen.
+ * UiState for the facts list screen. Only contains the facts themselves and a loading flag.
  */
 data class FactScreenUiState(
     val fact: Fact = Fact("", 0),

@@ -11,6 +11,10 @@ interface FactRepository {
     suspend fun getFact(): Fact?
 }
 
+
+// The Fact Repository is responsible for handling the Data Layer of the app.
+// Mainly connects to the network and local data sources and exposes their functions to the view and
+// service layers.
 class FactRepositoryImpl @Inject constructor(
     private val networkDataSource: FactsNetworkDataSource,
     private val localDataSource: FactsStore,

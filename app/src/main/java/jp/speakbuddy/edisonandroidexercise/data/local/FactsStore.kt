@@ -11,6 +11,8 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 import javax.inject.Inject
 
+// Store the latest fetched Fact. Currently unused for anything else that a demo implementation of
+// Jetpack Datastore.
 class FactsStore @Inject constructor(
     private val context: Context,
 ) {
@@ -25,8 +27,6 @@ class FactsStore @Inject constructor(
 
     suspend fun saveFact(fact: Fact) {
         context.dataStore.edit { preferences ->
-//            val existing = mutableListOf<>(preferences[FACTS_KEY])
-//            existing.add(fact.text)
             preferences[FACTS_KEY] = fact.text
         }
     }

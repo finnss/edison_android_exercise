@@ -20,7 +20,8 @@ import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import jp.speakbuddy.edisonandroidexercise.ui.theme.EdisonAndroidExerciseTheme
 
-
+// The main UI component of the App, implemented using Compose. Derives state
+// from FactViewModel.
 @Composable
 fun FactScreen(
     viewModel: FactViewModel

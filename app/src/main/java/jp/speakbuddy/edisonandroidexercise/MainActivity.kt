@@ -15,7 +15,8 @@ import jp.speakbuddy.edisonandroidexercise.ui.fact.FactViewModel
 import jp.speakbuddy.edisonandroidexercise.ui.theme.EdisonAndroidExerciseTheme
 import javax.inject.Inject
 
-
+// The main activity of the app. Responsible for setting up Singletons,
+// initializing the Compose View layer, and more.
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
     @Inject
