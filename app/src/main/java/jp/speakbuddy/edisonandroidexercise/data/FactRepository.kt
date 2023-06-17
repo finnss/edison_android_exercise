@@ -1,29 +1,28 @@
 package jp.speakbuddy.edisonandroidexercise.data
 
-import android.content.Context
-import jp.speakbuddy.edisonandroidexercise.network.FactDataSourceProvider
+import jp.speakbuddy.edisonandroidexercise.IoDispatcher
+import jp.speakbuddy.edisonandroidexercise.data.local.FactsStore
+import jp.speakbuddy.edisonandroidexercise.data.network.FactsNetworkDataSource
+import kotlinx.coroutines.CoroutineDispatcher
+import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
 interface FactRepository {
     suspend fun getFact(): Fact?
 }
 
-class FactRepositoryImpl @Inject constructor() : FactRepository {
-    private lateinit var context: Context
+class FactRepositoryImpl @Inject constructor(
+    private val networkDataSource: FactsNetworkDataSource,
+    private val localDataSource: FactsStore,
+    @IoDispatcher private val dispatcher: CoroutineDispatcher
 
-    @Inject
-    lateinit var factDataSourceProvider: FactDataSourceProvider
-
-    override suspend fun getFact(): Fact? {
-        return try {
-            val apiResponse = factDataSourceProvider.fetchFact()
-//            (context as MainActivity).dataStore.edit { settings ->
-//                val currentCounterValue = settings["fact"] ?: 0
-//                settings["fact"] = currentCounterValue + 1
-//            }
-            Fact(apiResponse.fact, apiResponse.length)
-        } catch (e: Exception) {
-            null
+) : FactRepository {
+    override suspend fun getFact(): Fact {
+        return withContext(dispatcher) {
+            val apiResponse = networkDataSource.fetchFact()
+            val fact = Fact(apiResponse.fact, apiResponse.length)
+            localDataSource.saveFact(fact)
+            fact
         }
     }
 }
